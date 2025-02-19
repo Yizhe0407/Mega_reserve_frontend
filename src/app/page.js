@@ -16,7 +16,7 @@ export default function Home() {
     phone: "",
     license: "",
     selectedItems: [],
-    date: new Date(),
+    date: null,
     selectedTime: null
   });
 
@@ -25,6 +25,19 @@ export default function Home() {
   };
 
   const handleNext = () => {
+    // 驗證當前步驟
+    if (step === 1 && (!formData.phone || !formData.license)) {
+      toast.error('請填寫手機和車牌號碼');
+      return;
+    }
+    if (step === 2 && formData.selectedItems.length === 0) {
+      toast.error('請至少選擇一項服務');
+      return;
+    }
+    if (step === 3 && !formData.selectedTime) {
+      toast.error('請選擇預約時間');
+      return;
+    }
     if (step < 4) setStep(step + 1);
   };
 
@@ -101,14 +114,14 @@ export default function Home() {
 
         <div className="flex justify-between w-full mt-auto">
           <Button 
-            className="w-24 bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
+            className="bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
             onClick={handlePrev}
             disabled={step === 1}
           >
             上一步 Prev
           </Button>
           <Button 
-            className="w-24 bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
+            className=" bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
             onClick={step === 4 ? handleSubmit : handleNext}
             disabled={loading}
           >
