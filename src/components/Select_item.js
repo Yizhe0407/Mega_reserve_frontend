@@ -67,8 +67,8 @@ export default function Select_item({ formData, setFormData }) {
             key={item}
             onClick={() => handleItemClick(item)}
             className={`${isSelected ? 'bg-blue-600' : 'bg-white'} 
-              text-${isSelected ? 'white' : 'blue-600'} 
-              border border-blue-600 hover:bg-blue-600 hover:text-white w-full`}
+              ${isSelected ? 'text-white' : 'text-blue-600'} 
+              border border-blue-600 hover:bg-blue-600 hover:text-white w-full transition-colors duration-200 touch-manipulation active:bg-blue-700`}
           >
             {item}
           </Button>
@@ -87,6 +87,7 @@ export default function Select_item({ formData, setFormData }) {
           />
         </div>
       )}
+      <p className="text-sm text-start text-gray-500">⚠️若取消點選無反應，請輕觸空白處</p>
     </div>
   )
 }
