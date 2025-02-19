@@ -56,6 +56,8 @@ export default function Home() {
         date: new Date(),
         selectedTime: null
       });
+      // 重置步驟到第一步
+      setStep(1);
       
     } catch (err) {
       toast.error(err.message);
@@ -88,8 +90,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex justify-center items-center p-4 h-full">
-      <div className="flex flex-col items-center border-2 rounded-lg p-2 w-[300px] h-[550px]">
+    <div className="flex justify-center items-center px-16 py-4 h-screen">
+      <div className="flex flex-col items-center w-[400px] h-full">
 
 
         {step === 1 && <PhoneLicense formData={formData} setFormData={setFormData} />}

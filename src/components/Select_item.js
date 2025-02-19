@@ -22,7 +22,7 @@ export default function Select_item({ formData, setFormData }) {
   };
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 w-full'>
       <p className="text-center text-lg">可一次預約多項目</p>
 
       {['保養', '換輪胎', '板金烤漆', '更換零件', '其他'].map((item) => (
@@ -31,7 +31,7 @@ export default function Select_item({ formData, setFormData }) {
           onClick={() => handleItemClick(item)}
           className={`${formData.selectedItems.includes(item) ? 'bg-blue-600' : 'bg-white'} 
             text-${formData.selectedItems.includes(item) ? 'white' : 'blue-600'} 
-            border border-blue-600 hover:bg-blue-600 hover:text-white`}
+            border border-blue-600 hover:bg-blue-600 hover:text-white w-full`}
         >
           {item}
         </Button>
