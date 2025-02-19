@@ -19,7 +19,7 @@ export default function Select_time({ formData, setFormData }) {
     const checkAvailability = async () => {
       if (!formData.date) return;
       try {
-        const response = await fetch(`http://localhost:3001/api/reservations/check-availability?date=${formData.date.toISOString()}`);
+        const response = await fetch(`https://mega-reserve-backend.vercel.app/api/reservations/check-availability?date=${formData.date.toISOString()}`);
         const data = await response.json();
         if (data.success) {
           setReservedTimes(data.reservedTimes);

@@ -33,7 +33,7 @@ export default function Home() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:3001/api/reservations', {
+      const response = await fetch('https://mega-reserve-backend.vercel.app/api/reservations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
