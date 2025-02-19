@@ -30,8 +30,8 @@ export default function Select_time({ formData, setFormData }) {
     checkAvailability();
   }, [formData.date]);
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
-      <h2 className="text-2xl text-center font-semibold text-blue-600">日期&時間</h2>
+    <div className="flex flex-col items-center gap-4 w-[250px]">
+      <h2 className="text-2xl text-center font-semibold text-blue-600">日期 & 時間</h2>
       <Calendar
         mode="single"
         selected={formData.date}

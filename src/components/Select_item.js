@@ -53,7 +53,7 @@ export default function Select_item({ formData, setFormData }) {
   };
 
   return (
-    <div className='flex flex-col gap-4 p-6 w-full'>
+    <div className='flex flex-col gap-4 w-[250px]'>
       <h2 className="text-2xl text-center font-semibold text-blue-600">預約項目</h2>
       <p className="text-sm text-start">可一次預約多項目</p>
 
