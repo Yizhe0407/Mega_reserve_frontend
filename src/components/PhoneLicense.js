@@ -4,9 +4,11 @@ import { Input } from './ui/input'
 
 export default function PhoneLicense({ formData, setFormData }) {
   const handleInputChange = (field, value) => {
+    // 如果是車牌號碼，則轉換為大寫
+    const processedValue = field === 'license' ? value.toUpperCase() : value;
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [field]: processedValue
     }));
   };
 
