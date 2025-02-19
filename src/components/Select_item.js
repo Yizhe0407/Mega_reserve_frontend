@@ -55,7 +55,7 @@ export default function Select_item({ formData, setFormData }) {
   return (
     <div className='flex flex-col gap-4 w-[250px]'>
       <h2 className="text-2xl text-center font-semibold text-blue-600">預約項目</h2>
-      <p className="text-sm text-start">可一次預約多項目</p>
+      <p className="text-sm text-start text-gray-500">可一次預約多項目</p>
 
       {['保養', '換輪胎', '板金烤漆', '更換零件', '其他'].map((item) => {
         const isSelected = item === '其他' ?

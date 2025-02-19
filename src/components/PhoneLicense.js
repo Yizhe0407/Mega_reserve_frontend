@@ -12,9 +12,14 @@ export default function PhoneLicense({ formData, setFormData }) {
 
   return (
     <div className='flex flex-col items-center max-w-md mx-auto w-[250px] space-y-6'>
-      <div className="flex flex-col">
-        <h2 className="text-2xl font-semibold text-blue-600">兆豐輪胎</h2>
-        <h2 className="text-2xl font-semibold text-blue-600">預約系統</h2>
+      <h2 className="text-2xl font-semibold text-blue-600">兆豐輪胎預約系統</h2>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-center">預約注意事項</h3>
+        <div className="flex border border-gray-400 rounded-lg w-full h-full p-4">
+          <p className="text-sm">
+            若預約失敗，請致電04-24220080預約，謝謝！
+          </p>
+        </div>
       </div>
       <div className="flex flex-col w-full space-y-4">
         <div className="flex flex-col space-y-2">
