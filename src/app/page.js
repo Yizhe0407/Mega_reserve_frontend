@@ -90,7 +90,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex justify-center items-center px-16 py-4 h-screen">
+    <div className="flex justify-center items-center px-16 py-4 h-[600px]">
       <div className="flex flex-col items-center w-[400px] h-full">
 
 
