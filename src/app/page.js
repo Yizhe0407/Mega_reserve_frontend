@@ -118,14 +118,14 @@ export default function Home() {
             onClick={handlePrev}
             disabled={step === 1}
           >
-            上一步 Prev
+            上一步
           </Button>
           <Button 
             className=" bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
             onClick={step === 4 ? handleSubmit : handleNext}
             disabled={loading}
           >
-            {step === 4 ? (loading ? "提交中..." : "確認預約 Check") : "下一步 Next"}
+            {step === 4 ? (loading ? "提交中..." : "確認預約") : "下一步"}
           </Button>
         </div>
       </div>
