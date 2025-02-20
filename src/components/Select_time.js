@@ -7,9 +7,9 @@ export default function Select_time({ formData, setFormData }) {
   const [reservedTimes, setReservedTimes] = useState([]);
 
   const times = [
-    "09:00", "10:00", "11:00",
-    "12:00", "13:00", "14:00",
-    "15:00", "16:00", "17:00"
+    "08:30", "09:00", "09:30",
+    "10:00", "10:30", "11:00",
+    "13:00", "14:00", "15:00"
   ];
   const fromDate = new Date();
   const toDate = new Date(new Date().getFullYear(), 11, 31);

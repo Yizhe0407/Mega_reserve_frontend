@@ -2,8 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Confirmation({ formData }) {
   return (
-    <div className="flex flex-col items-center w-full">
-      <h2 className="text-2xl font-semibold text-blue-600 mb-4">預約資訊</h2>
+    <div className="flex flex-col gap-4 items-center w-full">
+      <h2 className="text-2xl font-semibold text-blue-600">預約資訊</h2>
       <Card className="w-[250px]">
         <CardContent className="p-4">
           <div className="space-y-3">
@@ -30,6 +30,7 @@ export default function Confirmation({ formData }) {
           </div>
         </CardContent>
       </Card>
+      <p className="text-sm text-end  text-gray-400">請再次檢查預約資訊是否正確無誤</p>
     </div>
   );
 }
