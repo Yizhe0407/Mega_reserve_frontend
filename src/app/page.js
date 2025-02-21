@@ -61,6 +61,7 @@ export default function Home() {
       }
 
       toast.success('預約成功！感謝您的預約');
+      setSuccess(true);
       // 清空表單數據
       setFormData({
         phone: "",
@@ -69,8 +70,6 @@ export default function Home() {
         date: new Date(),
         selectedTime: null
       });
-      // 重置步驟到第一步
-      setStep(1);
       
     } catch (err) {
       toast.error(err.message);
