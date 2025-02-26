@@ -70,23 +70,6 @@ export default function Home() {
     setSuccess(false);
   };
 
-  if (success) {
-    return (
-      <div className="flex justify-center items-center p-4 h-full">
-        <div className="flex flex-col items-center border-2 rounded-lg p-4 w-[300px]">
-          <h2 className="text-xl font-bold text-green-600 mb-4">預約成功！</h2>
-          <p className="text-gray-600 mb-4">感謝您的預約</p>
-          <Button 
-            className="w-full bg-blue-600 text-white hover:bg-blue-700"
-            onClick={handleReset}
-          >
-            返回首頁
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
   const currentStep = {
     1: <PhoneLicense formData={formData} setFormData={setFormData} />,
     2: <Select_item formData={formData} setFormData={setFormData} />,
@@ -94,7 +77,20 @@ export default function Home() {
     4: <Confirmation formData={formData} />
   }[step];
 
-  return (
+  return success ? (
+    <div className="flex justify-center items-center p-4 h-full">
+      <div className="flex flex-col items-center border-2 rounded-lg p-4 w-[300px]">
+        <h2 className="text-xl font-bold text-green-600 mb-4">預約成功！</h2>
+        <p className="text-gray-600 mb-4">感謝您的預約</p>
+        <Button 
+          className="w-full bg-blue-600 text-white hover:bg-blue-700"
+          onClick={handleReset}
+        >
+          返回首頁
+        </Button>
+      </div>
+    </div>
+  ) : (
     <div className="flex justify-center items-center px-16 py-4 h-[630px]">
       <div className="flex flex-col items-center w-[500px] h-full">
         {currentStep}
