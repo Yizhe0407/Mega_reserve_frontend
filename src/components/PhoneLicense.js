@@ -13,7 +13,7 @@ export default function PhoneLicense({ formData, setFormData }) {
   };
 
   return (
-    <div className='flex flex-col items-center max-w-md mx-auto w-[250px] space-y-6'>
+    <div className='flex flex-col items-center max-w-md mx-auto w-full space-y-6'>
       <h2 className="text-2xl font-semibold text-blue-600">兆豐輪胎預約系統</h2>
       <div className="flex flex-col gap-2">
         <h3 className="text-center">🔥預約注意事項🔥</h3>

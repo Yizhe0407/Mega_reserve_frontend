@@ -49,7 +49,7 @@ export default function Select_time({ formData, setFormData }) {
     return timeToCheck <= now;
   };
   return (
-    <div className="flex flex-col items-center gap-4 w-[250px]">
+    <div className="flex flex-col items-center gap-4 w-full">
       <h2 className="text-2xl text-center font-semibold text-blue-600">日期 & 時間</h2>
       <Calendar
         mode="single"

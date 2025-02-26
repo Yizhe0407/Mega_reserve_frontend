@@ -92,7 +92,7 @@ export default function Home() {
     </div>
   ) : (
     <div className="flex justify-center items-center px-16 py-4 h-[630px]">
-      <div className="flex flex-col items-center w-[500px] h-full">
+      <div className="flex flex-col items-center w-[250px] h-full">
         {currentStep}
         <div className="flex justify-between w-full mt-auto">
           <Button 

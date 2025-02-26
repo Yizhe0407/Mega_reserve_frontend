@@ -49,7 +49,7 @@ export default function SelectItem({ formData, setFormData }) {
   };
 
   return (
-    <div className="flex flex-col gap-4 w-[250px]">
+    <div className="flex flex-col gap-4 w-full">
       <h2 className="text-2xl text-center font-semibold text-blue-600">預約項目</h2>
       <p className="text-sm text-start text-gray-400">可一次預約多項目</p>
 
