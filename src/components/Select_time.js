@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 export default function Select_time({ formData, setFormData }) {
   const [reservedTimes, setReservedTimes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const times = [
     "08:30", "09:00", "09:30",
@@ -15,44 +16,73 @@ export default function Select_time({ formData, setFormData }) {
   const toDate = new Date(new Date().getFullYear(), 11, 31);
 
   useEffect(() => {
-    if (!formData.date) return; // 如果沒有選擇日期，不執行檢查
+    if (!formData.date) return;
     const checkAvailability = async () => {
+      setIsLoading(true);
       try {
-        const response = await fetch(`https://mega-reserve-backend.vercel.app/api/reservations/check-availability?date=${formData.date.toISOString()}`);
+        const selectedDate = new Date(formData.date);
+        selectedDate.setHours(0, 0, 0, 0);
+        
+        const response = await fetch(`https://mega-reserve-backend.vercel.app/api/reservations/check-availability?date=${selectedDate.toISOString()}`);
         const data = await response.json();
         if (data.success) {
           setReservedTimes(data.reservedTimes);
         }
       } catch (error) {
         toast.error('檢查時間段可用性時發生錯誤，請稍後再試');
+      } finally {
+        setIsLoading(false);
       }
     };
     checkAvailability();
   }, [formData.date]);
+  
+  const isTimeExpired = (time) => {
+    if (!formData.date) return false;
+    
+    const now = new Date();
+    const selectedDate = new Date(formData.date);
+    const [hours, minutes] = time.split(':').map(Number);
+    const timeToCheck = new Date(selectedDate);
+    timeToCheck.setHours(hours, minutes, 0, 0);
+    
+    return timeToCheck <= now;
+  };
   return (
     <div className="flex flex-col items-center gap-4 w-[250px]">
       <h2 className="text-2xl text-center font-semibold text-blue-600">日期 & 時間</h2>
       <Calendar
         mode="single"
         selected={formData.date}
-        onSelect={(date) => setFormData({ ...formData, date, selectedTime: null })}
+        onSelect={(date) => {
+          if (!date) {
+            setFormData({ ...formData, date: null, selectedTime: null });
+            setReservedTimes([]);
+            return;
+          }
+          const localDate = new Date(date);
+          localDate.setHours(0, 0, 0, 0);
+          setFormData({ ...formData, date: localDate, selectedTime: null });
+          setReservedTimes([]);
+        }}
         fromDate={fromDate}
         toDate={toDate}
         className="rounded-md border"
         disabled={(date) => date.getDay() === 0}
       />
-      {formData.date ? (
+      {formData.date && !isLoading ? (
         <div className="grid grid-cols-3 gap-4 w-full max-w-md">
           {times.map((time) => {
             const isReserved = reservedTimes.includes(time);
+            const expired = isTimeExpired(time);
             return (
               <button
                 key={time}
-                onClick={() => !isReserved && setFormData({ ...formData, selectedTime: time })}
-                disabled={isReserved}
+                onClick={() => !isReserved && !expired && setFormData({ ...formData, selectedTime: time })}
+                disabled={isReserved || expired}
                 className={cn(
                   "rounded-lg py-2 px-4 text-sm font-medium border",
-                  isReserved
+                  isReserved || expired
                     ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
                     : formData.selectedTime === time
                     ? "bg-blue-600 text-white border-blue-600"
@@ -66,7 +96,7 @@ export default function Select_time({ formData, setFormData }) {
         </div>
       ) : (
         <div className="text-center text-gray-500 mt-4">
-          請選擇日期
+          {isLoading ? "載入時間段中..." : "請選擇日期"}
         </div>
       )}
     </div>
