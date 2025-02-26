@@ -91,10 +91,10 @@ export default function Home() {
       </div>
     </div>
   ) : (
-    <div className="flex justify-center items-center px-16 py-4 h-[630px]">
-      <div className="flex flex-col items-center w-[250px] h-full">
+    <div className="flex justify-center items-center px-16 py-4 h-screen">
+      <div className="flex flex-col items-center w-[250px] gap-4 h-full">
         {currentStep}
-        <div className="flex justify-between w-full mt-auto">
+        <div className="flex justify-between w-full mt-auto pb-4">
           <Button 
             className="bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
             onClick={handlePrev}
