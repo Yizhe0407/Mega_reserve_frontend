@@ -94,7 +94,7 @@ export default function Home() {
     </div>
   ) : (
     <div className="flex justify-center items-center py-4 h-screen">
-      <div className="flex flex-col items-center w-[275px] gap-4 h-full backdrop-blur-xl bg-white/20 p-4 rounded-lg shadow-xl">
+      <div className="flex flex-col items-center w-[275px] gap-4 h-screen backdrop-blur-xl bg-white/20 p-4 rounded-lg shadow-xl">
         {currentStep}
         <div className="flex justify-between w-full mt-auto pb-4">
           <Button
