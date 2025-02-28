@@ -25,6 +25,15 @@ export default function PhoneLicense({ formData, setFormData }) {
       </div>
       <div className="flex flex-col w-full space-y-4">
         <div className="flex flex-col space-y-2">
+          <p className="items-start">姓名︰</p>
+          <Input
+            className="w-full border items-center border-blue-400 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all"
+            placeholder="請輸入姓名"
+            value={formData.name}
+            onChange={(e) => handleInputChange('name', e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col space-y-2">
           <p className="items-start">手機號碼︰</p>
           <Input
             className="w-full border items-center border-blue-400 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all"

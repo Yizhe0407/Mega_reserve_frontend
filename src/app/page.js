@@ -12,6 +12,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
+    name: "",
     phone: "",
     license: "",
     selectedItems: [],
@@ -52,6 +53,7 @@ export default function Home() {
       toast.success('預約成功！感謝您的預約');
       setSuccess(true);
       setFormData({
+        name: "",
         phone: "",
         license: "",
         selectedItems: [],

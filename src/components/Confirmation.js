@@ -9,11 +9,15 @@ export default function Confirmation({ formData }) {
           <div className="space-y-3">
             <div>
               <p className="text-gray-500">預約日期 Date</p>
-              <p className="font-medium">{formData.date.toLocaleDateString()}</p>
+              <p className="font-medium">{new Date(formData.date).toLocaleDateString()}</p>
             </div>
             <div>
               <p className="text-gray-500">預約時間 Time</p>
               <p className="font-medium">{formData.selectedTime}</p>
+            </div>
+            <div>
+              <p className="text-gray-500">姓名 Name</p>
+              <p className="font-medium">{formData.name}</p>
             </div>
             <div>
               <p className="text-gray-500">服務項目 Services</p>

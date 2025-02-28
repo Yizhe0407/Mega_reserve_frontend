@@ -20,11 +20,10 @@ export default function Select_time({ formData, setFormData }) {
     const checkAvailability = async () => {
       setIsLoading(true);
       try {
-        const selectedDate = new Date(formData.date);
-        selectedDate.setHours(0, 0, 0, 0);
-        
-        const response = await fetch(`https://mega-reserve-backend.vercel.app/api/reservations/check-availability?date=${selectedDate.toISOString()}`);
+        const selectedDate = formData.date;
+        const response = await fetch(`https://mega-reserve-backend.vercel.app/api/reservations/check-availability?date=${selectedDate}`);
         const data = await response.json();
+        console.log('API返回數據：', data);
         if (data.success) {
           setReservedTimes(data.reservedTimes);
         }
@@ -36,33 +35,38 @@ export default function Select_time({ formData, setFormData }) {
     };
     checkAvailability();
   }, [formData.date]);
-  
+
   const isTimeExpired = (time) => {
     if (!formData.date) return false;
-    
-    const now = new Date();
+
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
     const selectedDate = new Date(formData.date);
+    const selectedDateStr = selectedDate.toISOString().split('T')[0];
+
+    if (selectedDateStr > todayStr) return false;
+    if (selectedDateStr < todayStr) return true;
+
+    // 如果是當天，檢查時間是否已過
     const [hours, minutes] = time.split(':').map(Number);
-    const timeToCheck = new Date(selectedDate);
-    timeToCheck.setHours(hours, minutes, 0, 0);
-    
-    return timeToCheck <= now;
+    const timeToCheck = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hours, minutes);
+
+    return today > timeToCheck;
   };
   return (
     <div className="flex flex-col items-center gap-4 w-full">
       <h2 className="text-2xl text-center font-semibold text-blue-600">日期 & 時間</h2>
       <Calendar
         mode="single"
-        selected={formData.date}
+        selected={formData.date ? new Date(formData.date) : null}
         onSelect={(date) => {
           if (!date) {
             setFormData({ ...formData, date: null, selectedTime: null });
             setReservedTimes([]);
             return;
           }
-          const localDate = new Date(date);
-          localDate.setHours(0, 0, 0, 0);
-          setFormData({ ...formData, date: localDate, selectedTime: null });
+          const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+          setFormData({ ...formData, date: formattedDate, selectedTime: null });
           setReservedTimes([]);
         }}
         fromDate={fromDate}
@@ -85,8 +89,8 @@ export default function Select_time({ formData, setFormData }) {
                   isReserved || expired
                     ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
                     : formData.selectedTime === time
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "border-blue-200 hover:border-blue-600"
+                      ? "bg-blue-600 text-white border-blue-600"
+                      : "border-blue-200 hover:border-blue-600"
                 )}
               >
                 {time}
