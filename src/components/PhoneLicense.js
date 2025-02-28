@@ -15,11 +15,15 @@ export default function PhoneLicense({ formData, setFormData }) {
   return (
     <div className='flex flex-col items-center max-w-md mx-auto w-full space-y-6'>
       <h2 className="text-2xl font-semibold text-blue-600">兆豐輪胎預約系統</h2>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-full">
         <h3 className="text-center">🔥預約注意事項🔥</h3>
         <div className="flex border border-gray-400 rounded-lg w-full h-full p-4">
           <p className="text-sm">
-            若預約失敗或車子有其它狀況<br/>請致電 04-24220080 預約<br/>謝謝！
+            若有以下情況
+            請致電 04-24220080：<br/>
+            1. 線上預約系統無法使用<br/>
+            2. 車輛有其他狀況<br/>
+            感謝您的配合！
           </p>
         </div>
       </div>
