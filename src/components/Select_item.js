@@ -79,7 +79,7 @@ export default function SelectItem({ formData, setFormData }) {
             placeholder="請描述您的問題"
             value={formData.otherDescription || ''}
             onChange={handleOtherDescription}
-            className="w-full"
+            className="w-full border-gray-400"
             required
           />
         </div>

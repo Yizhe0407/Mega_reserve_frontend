@@ -75,7 +75,7 @@ export default function Select_time({ formData, setFormData }) {
         disabled={(date) => date.getDay() === 0}
       />
 
-      <div className="w-full border border-gray-400"></div>
+      <div className="w-full border border-gray-300"></div>
 
       {formData.date && !isLoading ? (
         <div className="grid grid-cols-3 gap-4 w-full max-w-md">
