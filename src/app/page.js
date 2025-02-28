@@ -80,11 +80,11 @@ export default function Home() {
   }[step];
 
   return success ? (
-    <div className="flex justify-center items-center p-4 h-full">
-      <div className="flex flex-col items-center border-2 rounded-lg p-4 w-[300px]">
+    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 flex justify-center items-center p-4">
+      <div className="flex flex-col items-center border-2 rounded-lg p-4 w-[300px] backdrop-blur-xl bg-white/20 shadow-xl">
         <h2 className="text-xl font-bold text-green-600 mb-4">預約成功！</h2>
         <p className="text-gray-600 mb-4">感謝您的預約</p>
-        <Button 
+        <Button
           className="w-full bg-blue-600 text-white hover:bg-blue-700"
           onClick={handleReset}
         >
@@ -93,19 +93,19 @@ export default function Home() {
       </div>
     </div>
   ) : (
-    <div className="flex justify-center items-center px-16 py-4 h-screen">
-      <div className="flex flex-col items-center w-[250px] gap-4 h-full">
+    <div className="min-h-screen bg-gradient-to-br from-pink-200/90 via-purple-200/80 to-blue-200/90 flex justify-center items-center px-16 py-4">
+      <div className="flex flex-col items-center w-[300px] gap-4 h-auto backdrop-blur-xl bg-white/20 p-6 rounded-lg shadow-xl">
         {currentStep}
-        <div className="flex justify-between w-full mt-auto pb-4">
-          <Button 
-            className="bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
+        <div className="flex justify-between w-full mt-4">
+          <Button
+            className="bg-white/70 text-blue-600 border border-blue-600 hover:bg-white/80 hover:text-blue-600 hover:border-blue-600"
             onClick={handlePrev}
             disabled={step === 1}
           >
             上一步
           </Button>
-          <Button 
-            className="bg-white text-blue-600 border border-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600"
+          <Button
+            className="bg-white/70 text-blue-600 border border-blue-600 hover:bg-white/80 hover:text-blue-600 hover:border-blue-600"
             onClick={step === 4 ? handleSubmit : handleNext}
             disabled={loading}
           >
