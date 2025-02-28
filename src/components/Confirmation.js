@@ -20,16 +20,20 @@ export default function Confirmation({ formData }) {
               <p className="font-medium">{formData.name}</p>
             </div>
             <div>
-              <p className="text-gray-500">服務項目 Services</p>
-              <p className="font-medium">{formData.selectedItems.join(", ")}</p>
-            </div>
-            <div>
               <p className="text-gray-500">聯絡電話 Phone</p>
               <p className="font-medium">{formData.phone}</p>
             </div>
             <div>
+              <p className="text-gray-500">服務項目 Services</p>
+              <p className="font-medium">{formData.selectedItems.join(", ")}</p>
+            </div>
+            <div>
               <p className="text-gray-500">車牌號碼 License</p>
               <p className="font-medium">{formData.license}</p>
+            </div>
+            <div>
+              <p className="text-gray-500">到府牽車 Pickup Service</p>
+              <p className="font-medium">{formData.needPickup ? "是" : "否"}</p>
             </div>
           </div>
         </CardContent>

@@ -17,7 +17,8 @@ export default function Home() {
     license: "",
     selectedItems: [],
     date: null,
-    selectedTime: null
+    selectedTime: null,
+    needPickup: false
   });
 
   const handlePrev = () => step > 1 && setStep(step - 1);
@@ -58,7 +59,8 @@ export default function Home() {
         license: "",
         selectedItems: [],
         date: null,
-        selectedTime: null
+        selectedTime: null,
+        needPickup: false
       });
     } catch (err) {
       toast.error(err.message);

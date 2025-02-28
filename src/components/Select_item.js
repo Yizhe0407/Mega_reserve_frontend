@@ -84,6 +84,19 @@ export default function SelectItem({ formData, setFormData }) {
           />
         </div>
       )}
+
+      <div className="flex items-center gap-2 mt-4">
+        <input
+          type="checkbox"
+          id="needPickup"
+          checked={formData.needPickup || false}
+          onChange={(e) => setFormData(prev => ({ ...prev, needPickup: e.target.checked }))}
+          className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+        />
+        <label htmlFor="needPickup" className="text-sm text-gray-600">
+          需要到府牽車
+        </label>
+      </div>
     </div>
   );
 }
