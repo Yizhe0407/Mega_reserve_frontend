@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-pink-200/90 via-purple-200/80 to-blue-200/90 min-h-screen`}
       >
         {children}
         <Toaster richColors position="top-center" />
