@@ -71,9 +71,12 @@ export default function Select_time({ formData, setFormData }) {
         }}
         fromDate={fromDate}
         toDate={toDate}
-        className="rounded-md border"
+        className="rounded-md"
         disabled={(date) => date.getDay() === 0}
       />
+
+      <div className="w-full border border-gray-400"></div>
+
       {formData.date && !isLoading ? (
         <div className="grid grid-cols-3 gap-4 w-full max-w-md">
           {times.map((time) => {

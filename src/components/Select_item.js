@@ -64,7 +64,7 @@ export default function SelectItem({ formData, setFormData }) {
             type="button"
             key={item}
             onClick={handleItemClick(item)}
-            className={`${isSelected ? '!bg-blue-600 !text-white' : '!bg-white !text-blue-600'} 
+            className={`${isSelected ? '!bg-blue-600 !text-white' : '!bg-transparent !text-blue-600'} 
               !border !border-blue-600 active:!bg-blue-600 active:!text-white w-full touch-manipulation`}
           >
             {item}
