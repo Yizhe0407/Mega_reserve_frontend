@@ -80,7 +80,7 @@ export default function Home() {
   }[step];
 
   return success ? (
-    <div className="flex justify-center items-center p-4 h-full">
+    <div className="flex justify-center items-center min-h-screen">
       <div className="flex flex-col items-center border-2 rounded-lg p-4 w-[300px] backdrop-blur-xl bg-white/20 shadow-xl">
         <h2 className="text-xl font-bold text-green-600 mb-4">預約成功！</h2>
         <p className="text-gray-600 mb-4">感謝您的預約</p>
@@ -94,7 +94,7 @@ export default function Home() {
     </div>
   ) : (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col items-center w-[275px] gap-4 h-full backdrop-blur-xl bg-white/20 p-4 rounded-lg shadow-xl">
+      <div className="flex flex-col items-center w-[300px] gap-4 h-full backdrop-blur-xl bg-white/20 p-4 rounded-lg shadow-xl">
         {currentStep}
         <div className="flex justify-between w-full mt-auto pb-4">
           <Button
