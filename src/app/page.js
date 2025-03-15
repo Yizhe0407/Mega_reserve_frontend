@@ -6,7 +6,7 @@ import Select_item from "@/components/Select_item";
 import Select_time from "@/components/Select_time";
 import Confirmation from "@/components/Confirmation";
 import { Button } from "@/components/ui/button";
-import liff, { init, sendMessages } from "@line/liff";
+import liff from "@line/liff";
 
 export default function Home() {
   const [step, setStep] = useState(1);
@@ -67,10 +67,10 @@ export default function Home() {
           type: 'text',
           text: `預約成功通知！\n\n預約人：${formData.name}\n手機：${formData.phone}\n車牌：${formData.license}\n預約日期：${formData.date}\n預約時間：${formData.selectedTime}\n服務項目：${formData.selectedItems.join(', ')}${formData.needPickup ? '\n需要到府牽車' : ''}`
         }]);
-        toast.success('已發送 LINE 通知');
+        //toast.success('已發送 LINE 通知');
       } catch (error) {
         console.error('LINE 訊息發送失敗:', error);
-        toast.error('LINE 通知發送失敗，請檢查您的網路連接');
+        toast.error('LINE 通知發送失敗');
       }
       setSuccess(true);
       setFormData({
