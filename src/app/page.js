@@ -1,16 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import PhoneLicense from "@/components/PhoneLicense";
 import Select_item from "@/components/Select_item";
 import Select_time from "@/components/Select_time";
 import Confirmation from "@/components/Confirmation";
 import { Button } from "@/components/ui/button";
+import { init, sendMessages } from "@line/liff";
 
 export default function Home() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const initializeLiff = async () => {
+      try {
+        await init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
+      } catch (error) {
+        console.error('LIFF 初始化失敗:', error);
+      }
+    };
+    initializeLiff();
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -52,6 +64,14 @@ export default function Home() {
       if (!response.ok) throw new Error(data.error || '預約失敗，請稍後再試');
 
       toast.success('預約成功！感謝您的預約');
+      try {
+        await sendMessages([{
+          type: 'text',
+          text: `預約成功通知！\n\n預約人：${formData.name}\n手機：${formData.phone}\n車牌：${formData.license}\n預約日期：${formData.date}\n預約時間：${formData.selectedTime}\n服務項目：${formData.selectedItems.join(', ')}${formData.needPickup ? '\n需要到府牽車' : ''}`
+        }]);
+      } catch (error) {
+        console.error('LINE 訊息發送失敗:', error);
+      }
       setSuccess(true);
       setFormData({
         name: "",
