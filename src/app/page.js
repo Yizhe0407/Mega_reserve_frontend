@@ -6,7 +6,7 @@ import Select_item from "@/components/Select_item";
 import Select_time from "@/components/Select_time";
 import Confirmation from "@/components/Confirmation";
 import { Button } from "@/components/ui/button";
-import { init, sendMessages } from "@line/liff";
+import liff, { init, sendMessages } from "@line/liff";
 
 export default function Home() {
   const [step, setStep] = useState(1);
@@ -14,23 +14,12 @@ export default function Home() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const initializeLiff = async () => {
-      try {
-        await init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
-        if (!liff.isInClient()) {
-          toast.error('請在 LINE 應用程式內開啟此網頁');
-          return;
-        }
-        const isLoggedIn = await liff.isLoggedIn();
-        if (!isLoggedIn) {
-          await liff.login();
-        }
-      } catch (error) {
-        console.error('LIFF 初始化失敗:', error);
-        toast.error('LINE 功能初始化失敗，請稍後再試');
-      }
-    };
-    initializeLiff();
+    liff.init({
+        liffId: process.env.NEXT_PUBLIC_LIFF_ID, // Use own liffId
+        withLoginOnExternalBrowser: true, // Enable automatic login process
+    }).then(() => {
+        toast.success(liff.isLoggedIn() ? '已登入' : '未登入')
+    });
   }, []);
   const [formData, setFormData] = useState({
     name: "",
@@ -74,16 +63,7 @@ export default function Home() {
 
       toast.success('預約成功！感謝您的預約');
       try {
-        if (!liff.isInClient()) {
-          toast.error('請在 LINE 應用程式內開啟此網頁以接收通知');
-          return;
-        }
-        const isLoggedIn = await liff.isLoggedIn();
-        if (!isLoggedIn) {
-          toast.error('請先登入 LINE 帳號');
-          return;
-        }
-        await sendMessages([{
+        await liff.sendMessages([{
           type: 'text',
           text: `預約成功通知！\n\n預約人：${formData.name}\n手機：${formData.phone}\n車牌：${formData.license}\n預約日期：${formData.date}\n預約時間：${formData.selectedTime}\n服務項目：${formData.selectedItems.join(', ')}${formData.needPickup ? '\n需要到府牽車' : ''}`
         }]);
