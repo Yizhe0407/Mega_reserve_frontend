@@ -17,8 +17,13 @@ export default function Home() {
     const initializeLiff = async () => {
       try {
         await init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
+        if (!liff.isInClient()) {
+          toast.error('請在 LINE 應用程式內開啟此網頁');
+          return;
+        }
       } catch (error) {
         console.error('LIFF 初始化失敗:', error);
+        toast.error('LINE 功能初始化失敗，請稍後再試');
       }
     };
     initializeLiff();
@@ -65,12 +70,18 @@ export default function Home() {
 
       toast.success('預約成功！感謝您的預約');
       try {
+        if (!liff.isInClient()) {
+          toast.error('請在 LINE 應用程式內開啟此網頁以接收通知');
+          return;
+        }
         await sendMessages([{
           type: 'text',
           text: `預約成功通知！\n\n預約人：${formData.name}\n手機：${formData.phone}\n車牌：${formData.license}\n預約日期：${formData.date}\n預約時間：${formData.selectedTime}\n服務項目：${formData.selectedItems.join(', ')}${formData.needPickup ? '\n需要到府牽車' : ''}`
         }]);
+        toast.success('已發送 LINE 通知');
       } catch (error) {
         console.error('LINE 訊息發送失敗:', error);
+        toast.error('LINE 通知發送失敗，請檢查您的網路連接');
       }
       setSuccess(true);
       setFormData({
