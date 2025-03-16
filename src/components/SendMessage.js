@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import liff from "@line/liff";
 
-export default function ShareMessage({ formData }) {
+export default function SendMessage({ formData }) {
     const sendLineMessage = async () => {
         try {
             const flexMessage = {
@@ -37,14 +37,14 @@ export default function ShareMessage({ formData }) {
                                             {
                                                 type: "text",
                                                 text: "日期 Date",
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#555555",
                                                 flex: 0
                                             },
                                             {
                                                 type: "text",
                                                 text: formData.date,
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#111111",
                                                 align: "end"
                                             }
@@ -57,14 +57,14 @@ export default function ShareMessage({ formData }) {
                                             {
                                                 type: "text",
                                                 text: "時間 Time",
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#555555",
                                                 flex: 0
                                             },
                                             {
                                                 type: "text",
                                                 text: formData.selectedTime,
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#111111",
                                                 align: "end"
                                             }
@@ -82,13 +82,13 @@ export default function ShareMessage({ formData }) {
                                             {
                                                 type: "text",
                                                 text: "姓名 Name",
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#555555"
                                             },
                                             {
                                                 type: "text",
                                                 text: formData.name,
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#111111",
                                                 align: "end"
                                             }
@@ -101,13 +101,13 @@ export default function ShareMessage({ formData }) {
                                             {
                                                 type: "text",
                                                 text: "連絡電話 Phone",
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#555555"
                                             },
                                             {
                                                 type: "text",
                                                 text: formData.phone,
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#111111",
                                                 align: "end"
                                             }
@@ -120,13 +120,13 @@ export default function ShareMessage({ formData }) {
                                             {
                                                 type: "text",
                                                 text: "車牌號碼 License",
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#555555"
                                             },
                                             {
                                                 type: "text",
                                                 text: formData.license,
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#111111",
                                                 align: "end"
                                             }
@@ -134,18 +134,18 @@ export default function ShareMessage({ formData }) {
                                     },
                                     {
                                         type: "box",
-                                        layout: "horizontal",
+                                        layout: "vertical",
                                         contents: [
                                             {
                                                 type: "text",
                                                 text: "服務項目 Services",
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#555555"
                                             },
                                             {
                                                 type: "text",
                                                 text: formData.selectedItems.join(', '),
-                                                size: "sm",
+                                                size: "md",
                                                 color: "#111111",
                                                 align: "end"
                                             }
@@ -165,14 +165,14 @@ export default function ShareMessage({ formData }) {
                                     {
                                         type: "text",
                                         text: "到府牽車 Pickup Service",
-                                        size: "xs",
+                                        size: "sm",
                                         color: "#aaaaaa",
                                         flex: 0
                                     },
                                     {
                                         type: "text",
                                         color: "#aaaaaa",
-                                        size: "xs",
+                                        size: "sm",
                                         align: "end",
                                         text: formData.needPickup ? "是" : "否"
                                     }
@@ -190,7 +190,7 @@ export default function ShareMessage({ formData }) {
 
             const result = await liff.sendMessages([flexMessage]);
             if (result) {
-                toast.success('已發送 LINE 通知');
+                //toast.success('已發送 LINE 通知');
                 return true;
             }
             return false;

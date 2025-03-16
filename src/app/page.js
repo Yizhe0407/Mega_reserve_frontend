@@ -5,7 +5,7 @@ import PhoneLicense from "@/components/PhoneLicense";
 import Select_item from "@/components/Select_item";
 import Select_time from "@/components/Select_time";
 import Confirmation from "@/components/Confirmation";
-import ShareMessage from "@/components/ShareMessage";
+import SendMessage from "@/components/SendMessage";
 import { Button } from "@/components/ui/button";
 import liff from "@line/liff";
 
@@ -63,7 +63,7 @@ export default function Home() {
       if (!response.ok) throw new Error(data.error || '預約失敗，請稍後再試');
 
       toast.success('預約成功！感謝您的預約');
-      const { sendLineMessage } = ShareMessage({ formData });
+      const { sendLineMessage } = SendMessage({ formData });
       const messageSent = await sendLineMessage();
       setSuccess(true);
       setFormData({
