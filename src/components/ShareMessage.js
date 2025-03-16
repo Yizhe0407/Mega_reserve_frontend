@@ -188,7 +188,7 @@ export default function ShareMessage({ formData }) {
                 }
             };
 
-            const result = await liff.shareTargetPicker([flexMessage]);
+            const result = await liff.sendMessages([flexMessage]);
             if (result) {
                 toast.success('已發送 LINE 通知');
                 return true;
