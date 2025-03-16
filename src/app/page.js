@@ -5,6 +5,7 @@ import PhoneLicense from "@/components/PhoneLicense";
 import Select_item from "@/components/Select_item";
 import Select_time from "@/components/Select_time";
 import Confirmation from "@/components/Confirmation";
+import ShareMessage from "@/components/ShareMessage";
 import { Button } from "@/components/ui/button";
 import liff from "@line/liff";
 
@@ -15,10 +16,10 @@ export default function Home() {
 
   useEffect(() => {
     liff.init({
-        liffId: process.env.NEXT_PUBLIC_LIFF_ID, // Use own liffId
-        withLoginOnExternalBrowser: true, // Enable automatic login process
+      liffId: process.env.NEXT_PUBLIC_LIFF_ID, // Use own liffId
+      withLoginOnExternalBrowser: true, // Enable automatic login process
     }).then(() => {
-        toast.success(liff.isLoggedIn() ? '已登入' : '未登入')
+      toast.success(liff.isLoggedIn() ? '已登入' : '未登入')
     });
   }, []);
   const [formData, setFormData] = useState({
@@ -62,16 +63,8 @@ export default function Home() {
       if (!response.ok) throw new Error(data.error || '預約失敗，請稍後再試');
 
       toast.success('預約成功！感謝您的預約');
-      try {
-        await liff.sendMessages([{
-          type: 'text',
-          text: `預約成功通知！\n\n預約人：${formData.name}\n手機：${formData.phone}\n車牌：${formData.license}\n預約日期：${formData.date}\n預約時間：${formData.selectedTime}\n服務項目：${formData.selectedItems.join(', ')}${formData.needPickup ? '\n需要到府牽車' : ''}`
-        }]);
-        //toast.success('已發送 LINE 通知');
-      } catch (error) {
-        console.error('LINE 訊息發送失敗:', error);
-        toast.error('LINE 通知發送失敗');
-      }
+      const { sendLineMessage } = ShareMessage({ formData });
+      const messageSent = await sendLineMessage();
       setSuccess(true);
       setFormData({
         name: "",
